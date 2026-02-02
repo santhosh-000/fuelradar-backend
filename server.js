@@ -10,6 +10,11 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
+const cors = require("cors");
+app.use(cors({ origin: "https://yourfrontend.netlify.app" }));
+
+ 
+
 /* ----------------------------------
    ✅ MONGODB CONNECTION
 ---------------------------------- */
@@ -20,6 +25,19 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((err) => {
     console.error("❌ MongoDB Connection Error:", err.message);
   });
+
+app.post("/save-ride", async (req, res) => {
+  try {
+    const rideData = req.body;
+    // save to MongoDB
+    await RideModel.create(rideData);
+    res.json({ success: true, message: "Ride saved successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 
 /* ----------------------------------
    ✅ RIDE SCHEMA & MODEL
