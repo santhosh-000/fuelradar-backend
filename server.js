@@ -210,3 +210,8 @@ app.get("/nearby-bunks", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`🔥 FuelRadar backend running on port ${PORT}`);
 });
+
+app.get("/", (req, res) => {
+  res.type("text").send("FuelRadar backend running 🚀");
+});
+
