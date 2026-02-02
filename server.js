@@ -10,7 +10,7 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({ origin: "https://yourfrontend.netlify.app" }));
+app.use(cors({ origin: "https://mellow-marzipan-1405af.netlify.app/" }));
 
  
 
